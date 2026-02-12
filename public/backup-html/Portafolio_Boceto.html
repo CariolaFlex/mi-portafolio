@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrés Cariola - Ingeniería Civil & Automatización IA</title>
+    <meta name="description" content="Portafolio de Andrés Cariola - Estudiante de Ingeniería Civil y Especialista en Automatización con Google Workspace e IA.">
+    <meta property="og:title" content="Andrés Cariola - Automation & AI Specialist">
+    <meta property="og:image" content="https://i.postimg.cc/vBVjWBhw/Logo-HD.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --primary: #00d9ff;
+            --primary-dark: #0099cc;
+            --secondary: #7c3aed;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #0f172a;
+            --dark-lighter: #1e293b;
+            --dark-card: #1a2332;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
+
+        /* Navegación */
+        .navbar {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000; padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border);
+        }
+        .navbar.scrolled { padding: 0.5rem 0; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+        .nav-container {
+            max-width: 1400px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text); }
+        .logo-img {
+            width: 50px; height: 50px; object-fit: contain;
+            border-radius: 8px; animation: logoFloat 3s ease-in-out infinite;
+        }
+        @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .logo-text { font-size: 1.25rem; font-weight: 700; }
+        
+        .nav-menu { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s ease; }
+        .nav-link:hover { color: var(--primary); }
+        .nav-link:hover::after { width: 100%; }
+
+        .hire-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; padding: 0.75rem 1.5rem; border-radius: 8px;
+            text-decoration: none; font-weight: 600; transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+        }
+        .hire-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.2); transition: left 0.5s ease; }
+        .hire-btn:hover::before { left: 100%; }
+
+        /* Hero Section */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 6rem 2rem 4rem; overflow: hidden; }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1;
+            background: radial-gradient(circle at 20% 50%, var(--primary) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, var(--secondary) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, var(--accent) 0%, transparent 50%);
+            animation: bgMove 20s ease-in-out infinite;
+        }
+        @keyframes bgMove { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(20px, -10px) scale(0.95); } }
+        
+        .hero-content { max-width: 1400px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+        .hero-text { animation: fadeInLeft 1s ease; }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+        .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: blink 1.5s infinite; }
+        
+        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; font-weight: 600; }
+        .hero-description { font-size: 1.125rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8; }
+        
+        .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { background: var(--dark-card); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border); transition: all 0.3s ease; }
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2); }
+        .stat-value { font-size: 2rem; font-weight: bold; color: var(--primary); display: block; }
+        .stat-label { font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem; }
+        
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn { padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; }
+        .btn-secondary { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3); }
+        
+        .hero-visual { position: relative; animation: fadeInRight 1s ease; }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        
+        .profile-container { position: relative; width: 350px; height: 350px; margin: 0 auto; }
+        .profile-ring { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--primary); opacity: 0.3; animation: ringPulse 3s ease-in-out infinite; }
+        .profile-ring:nth-child(2) { animation-delay: 0.5s; transform: scale(1.1); }
+        .profile-ring:nth-child(3) { animation-delay: 1s; transform: scale(1.2); }
+        @keyframes ringPulse { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.05); opacity: 0.1; } }
+        
+        .profile-image { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; padding: 5px; animation: float 6s ease-in-out infinite; overflow: hidden; }
+        @keyframes float { 0%, 100% { transform: translate(-50%, -50%) translateY(0); } 50% { transform: translate(-50%, -50%) translateY(-20px); } }
+        .profile-image img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background-color: var(--dark); }
+        
+        .profile-status { position: absolute; bottom: 10%; right: 10%; width: 60px; height: 60px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 4px solid var(--dark); animation: statusPulse 2s infinite; }
+        @keyframes statusPulse { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+
+        /* Projects Section */
+        .projects { padding: 5rem 2rem; background: linear-gradient(180deg, var(--dark) 0%, var(--dark-lighter) 100%); }
+        .section-header { text-align: center; margin-bottom: 4rem; animation: fadeInUp 0.8s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .section-subtitle { color: var(--text-muted); font-size: 1.125rem; max-width: 600px; margin: 0 auto; }
+        
+        .projects-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        
+        .project-card { background: var(--dark-card); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); transition: all 0.3s ease; position: relative; cursor: pointer; display: flex; flex-direction: column; }
+        .project-card.placeholder { opacity: 0.6; border-style: dashed; justify-content: center; align-items: center; min-height: 300px; }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2); border-color: var(--primary); opacity: 1; }
+        
+        .project-image { width: 100%; height: 200px; background: linear-gradient(135deg, var(--dark-lighter), var(--dark)); position: relative; overflow: hidden; }
+        .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .project-card:hover .project-image img { transform: scale(1.1); }
+        
+        .project-tech { position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
+        .tech-badge { background: rgba(0, 0, 0, 0.8); color: var(--primary); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; backdrop-filter: blur(10px); }
+        
+        .project-content { padding: 1.5rem; position: relative; z-index: 1; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text); }
+        .project-description { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; }
+        
+        .project-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+        .project-stat { text-align: center; }
+        .project-stat-value { display: block; font-size: 1.25rem; font-weight: bold; color: var(--primary); }
+        .project-stat-label { display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; }
+        
+        .project-links { display: flex; gap: 0.75rem; margin-top: auto; }
+        .project-link { flex: 1; padding: 0.75rem; background: rgba(0, 217, 255, 0.1); border: 1px solid var(--primary); border-radius: 8px; color: var(--primary); text-decoration: none; text-align: center; font-size: 0.875rem; font-weight: 600; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .project-link:hover { background: var(--primary); color: var(--dark); }
+
+        /* Skills Section */
+        .skills { padding: 5rem 2rem; background: var(--dark); }
+        .skills-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .skill-category { background: var(--dark-card); padding: 2rem; border-radius: 16px; border: 1px solid var(--border); transition: all 0.3s ease; }
+        .skill-category:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0, 217, 255, 0.1); }
+        .skill-icon { width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .skill-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--text); }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-tag { background: rgba(0, 217, 255, 0.1); color: var(--primary); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.875rem; font-weight: 500; border: 1px solid rgba(0, 217, 255, 0.3); transition: all 0.3s ease; }
+        .skill-tag:hover { background: var(--primary); color: var(--dark); transform: scale(1.05); }
+
+        /* Contact Section */
+        .contact { padding: 5rem 2rem; background: linear-gradient(180deg, var(--dark-lighter) 0%, var(--dark) 100%); }
+        .contact-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .contact-info { animation: fadeInLeft 0.8s ease; }
+        .contact-title { font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text); }
+        .contact-text { color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8; }
+        .contact-items { display: flex; flex-direction: column; gap: 1.5rem; }
+        .contact-item { display: flex; align-items: center; gap: 1rem; }
+        .contact-icon { width: 50px; height: 50px; background: rgba(0, 217, 255, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.25rem; transition: all 0.3s ease; }
+        .contact-item:hover .contact-icon { background: var(--primary); color: var(--dark); transform: rotate(360deg); }
+        .contact-details h4 { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.25rem; font-weight: 500; }
+        .contact-details a, .contact-details span { color: var(--text); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+        .contact-details a:hover { color: var(--primary); }
+        
+        .contact-form { background: var(--dark-card); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border); animation: fadeInRight 0.8s ease; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; color: var(--text); font-weight: 500; }
+        .form-input, .form-textarea { width: 100%; padding: 0.75rem 1rem; background: var(--dark); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 1rem; transition: all 0.3s ease; }
+        .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1); }
+        .form-textarea { resize: vertical; min-height: 120px; }
+        .form-submit { width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3); }
+
+        /* Social Links */
+        .social-links { display: flex; gap: 1rem; margin-top: 2rem; }
+        .social-link { width: 45px; height: 45px; background: rgba(0, 217, 255, 0.1); border: 1px solid var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; transition: all 0.3s ease; }
+        .social-link:hover { background: var(--primary); color: var(--dark); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3); }
+
+        /* Footer */
+        .footer { background: var(--dark); padding: 3rem 2rem 2rem; border-top: 1px solid var(--border); }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+        .footer-text { color: var(--text-muted); }
+        .footer-links { display: flex; gap: 2rem; list-style: none; }
+        .footer-link { color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
+        .footer-link:hover { color: var(--primary); }
+
+        /* Mobile Menu */
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); }
+            .hero-visual { display: none; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .contact-container { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+
+        /* Loading */
+        .loading { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); display: flex; align-items: center; justify-content: center; z-index: 9999; animation: fadeOut 1s ease 1s forwards; }
+        @keyframes fadeOut { to { opacity: 0; pointer-events: none; } }
+        .loader { width: 50px; height: 50px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Particles */
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
+        .particle { position: absolute; width: 4px; height: 4px; background: var(--primary); border-radius: 50%; animation: float-particle 20s linear infinite; }
+        @keyframes float-particle { from { transform: translateY(100vh) translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } to { transform: translateY(-100vh) translateX(100px); opacity: 0; } }
+
+        /* FAB */
+        .fab { position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3); z-index: 100; }
+        .fab:hover { transform: scale(1.1); box-shadow: 0 15px 40px rgba(0, 217, 255, 0.5); }
+
+        /* --- MODAL STYLING REFORZADO --- */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 2000; overflow-y: auto; padding: 2rem 0; animation: fadeIn 0.3s ease; }
+        .modal.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal-content {
+            background: var(--dark);
+            border-radius: 16px;
+            max-width: 1400px;
+            margin: 2rem auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            min-height: 80vh;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.1); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; transition: all 0.3s ease; z-index: 100; display: flex; align-items: center; justify-content: center; }
+        .modal-close:hover { background: var(--danger); transform: rotate(90deg); }
+
+        /* ESTILOS DEL DASHBOARD DENTRO DEL MODAL */
+        .dashboard-container { padding: 2rem; }
+        .dashboard-header { text-align: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .dashboard-header h2 { font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 0.5rem; }
+        .dashboard-header p { color: var(--primary); font-family: monospace; font-size: 1.1rem; letter-spacing: 2px; }
+        
+        /* Module Selector (Tabs) */
+        .module-selector { display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
+        .flow-tab {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .flow-tab:hover { border-color: var(--primary); color: white; }
+        .flow-tab.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-color: transparent; box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3); }
+
+        /* Stats Panel */
+        .stats-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .stat-box { background: var(--dark-lighter); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); position: relative; overflow: hidden; }
+        .stat-box::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary); }
+        .stat-box h3 { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .stat-box .number { font-size: 2.5rem; font-weight: 800; color: white; }
+        .stat-box .trend { font-size: 0.8rem; color: var(--accent); display: flex; align-items: center; gap: 0.25rem; margin-top: 0.5rem; }
+
+        /* Charts Area */
+        .charts-area { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+        .chart-card { background: var(--dark-lighter); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); }
+        .chart-card h3 { color: white; margin-bottom: 1rem; font-size: 1.1rem; }
+        
+        /* Architecture Grid */
+        .section-divider { display: flex; align-items: center; gap: 1rem; margin: 3rem 0 1.5rem; }
+        .section-divider span { background: var(--dark-card); border: 1px solid var(--primary); color: var(--primary); padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 700; }
+        .section-divider div { height: 1px; background: var(--border); flex-grow: 1; }
+
+        .arch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        .arch-card { background: var(--dark-lighter); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; group; }
+        .arch-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15); }
+        
+        .arch-img-container { height: 180px; overflow: hidden; position: relative; border-bottom: 1px solid var(--border); cursor: zoom-in; }
+        .arch-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .arch-card:hover .arch-img-container img { transform: scale(1.1); }
+        .fig-tag { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-family: monospace; border: 1px solid var(--border); }
+        
+        .arch-body { padding: 1.25rem; }
+        .arch-title { font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 0.5rem; }
+        .arch-desc { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* Lightbox */
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; justify-content: center; align-items: center; animation: fadeIn 0.2s; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 50px rgba(0,217,255,0.2); border: 1px solid var(--border); }
+        .lightbox-close { position: absolute; top: 2rem; right: 2rem; color: white; font-size: 2rem; cursor: pointer; transition: color 0.3s; }
+        .lightbox-close:hover { color: var(--primary); }
+
+        @media (max-width: 1024px) {
+            .charts-area { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <div class="loader"></div>
+    </div>
+
+    <div class="particles" id="particles"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="https://i.postimg.cc/vBVjWBhw/Logo-HD.png" alt="Andrés Cariola Logo" class="logo-img">
+                <span class="logo-text">Andrés Cariola</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Inicio</a></li>
+                <li><a href="#projects" class="nav-link">Proyectos</a></li>
+                <li><a href="#skills" class="nav-link">Habilidades</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+                <li><a href="https://wa.me/56992841001" target="_blank" class="hire-btn">Contratar</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="status-dot"></span>
+                    <span>Disponible para proyectos</span>
+                </div>
+                <h1>Transformando Procesos con Ingeniería y Automatización IA</h1>
+                <p class="hero-subtitle">Ingeniería Civil & Automatización Inteligente</p>
+                <p class="hero-description">
+                    Estudiante de 5to año de Ingeniería Civil entrenado para analizar sistemas complejos y crear soluciones lógicas. 
+                    Construyo automatizaciones personalizadas con Google Apps Script e Inteligencia Artificial (Gemini/Claude) que convierten tareas manuales en sistemas eficientes.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-value">3+</span>
+                        <span class="stat-label">Años Exp.</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">Civil</span>
+                        <span class="stat-label">Ingeniería</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">100%</span>
+                        <span class="stat-label">Automatizado</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Ver Soluciones
+                    </a>
+                    <a href="https://github.com/CariolaFlex" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="profile-container">
+                    <div class="profile-ring"></div>
+                    <div class="profile-ring"></div>
+                    <div class="profile-ring"></div>
+                    <div class="profile-image">
+                        <img src="https://i.postimg.cc/vBVjWBhw/Logo-HD.png" alt="Andrés Cariola">
+                    </div>
+                    <div class="profile-status">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <div class="section-header">
+            <h2 class="section-title">Portafolio de Proyectos</h2>
+            <p class="section-subtitle">
+                Sistemas que combinan la robustez de la ingeniería con el poder de la Inteligencia Artificial.
+            </p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card" onclick="openProjectModal('evoneuro')">
+                <div class="project-image">
+                    <img src="https://i.postimg.cc/fWV1NHQx/1.png" alt="EvoNeuro Clinic System">
+                    <div class="project-tech">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">AI Integration</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">EvoNeuro Clinic System</h3>
+                    <p class="project-description">
+                        Sistema integral de transformación digital para clínicas. Incluye admisión de pacientes, 
+                        gestión de historiales médicos y prescripción inteligente con IA.
+                    </p>
+                    <div class="project-stats">
+                        <div class="project-stat">
+                            <span class="project-stat-value">99%</span>
+                            <span class="project-stat-label">Eficiencia</span>
+                        </div>
+                        <div class="project-stat">
+                            <span class="project-stat-value">600k</span>
+                            <span class="project-stat-label">Pacientes</span>
+                        </div>
+                        <div class="project-stat">
+                            <span class="project-stat-value">Auto</span>
+                            <span class="project-stat-label">Procesos</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <span class="project-link">
+                            <i class="fas fa-eye"></i> Ver Demo & Dashboard
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal('uberpro')">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x200/1a2332/7c3aed?text=UberPro" alt="UberPro">
+                    <div class="project-tech">
+                        <span class="tech-badge">Google Sheets</span>
+                        <span class="tech-badge">Apps Script</span>
+                        <span class="tech-badge">Dashboard</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">UberPro</h3>
+                    <p class="project-description">
+                        Sistema avanzado de gestión y optimización. Próximamente más detalles sobre esta implementación de automatización.
+                    </p>
+                    <div class="project-stats">
+                        <div class="project-stat">
+                            <span class="project-stat-value">New</span>
+                            <span class="project-stat-label">Proyecto</span>
+                        </div>
+                        <div class="project-stat">
+                            <span class="project-stat-value">AI</span>
+                            <span class="project-stat-label">Powered</span>
+                        </div>
+                        <div class="project-stat">
+                            <span class="project-stat-value">Cloud</span>
+                            <span class="project-stat-label">System</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <span class="project-link">
+                            <i class="fas fa-clock"></i> Próximamente
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card placeholder">
+                <div class="project-content" style="text-align: center;">
+                    <div style="font-size: 3rem; color: var(--border); margin-bottom: 1rem;"><i class="fas fa-plus-circle"></i></div>
+                    <h3 class="project-title" style="color: var(--text-muted);">Nuevo Proyecto</h3>
+                    <p class="project-description">Espacio reservado para futura implementación</p>
+                </div>
+            </div>
+            <div class="project-card placeholder"><div class="project-content" style="text-align: center;"><div style="font-size: 3rem; color: var(--border); margin-bottom: 1rem;"><i class="fas fa-plus-circle"></i></div><h3 class="project-title" style="color: var(--text-muted);">Nuevo Proyecto</h3></div></div>
+            <div class="project-card placeholder"><div class="project-content" style="text-align: center;"><div style="font-size: 3rem; color: var(--border); margin-bottom: 1rem;"><i class="fas fa-plus-circle"></i></div><h3 class="project-title" style="color: var(--text-muted);">Nuevo Proyecto</h3></div></div>
+            <div class="project-card placeholder"><div class="project-content" style="text-align: center;"><div style="font-size: 3rem; color: var(--border); margin-bottom: 1rem;"><i class="fas fa-plus-circle"></i></div><h3 class="project-title" style="color: var(--text-muted);">Nuevo Proyecto</h3></div></div>
+            <div class="project-card placeholder"><div class="project-content" style="text-align: center;"><div style="font-size: 3rem; color: var(--border); margin-bottom: 1rem;"><i class="fas fa-plus-circle"></i></div><h3 class="project-title" style="color: var(--text-muted);">Nuevo Proyecto</h3></div></div>
+            <div class="project-card placeholder"><div class="project-content" style="text-align: center;"><div style="font-size: 3rem; color: var(--border); margin-bottom: 1rem;"><i class="fas fa-plus-circle"></i></div><h3 class="project-title" style="color: var(--text-muted);">Nuevo Proyecto</h3></div></div>
+        </div>
+    </section>
+
+    <section class="skills" id="skills">
+        <div class="section-header">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            <p class="section-subtitle">
+                Combinando Ingeniería Civil con Desarrollo de Software y Automatización
+            </p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                <h3 class="skill-title">Automation & Scripting</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Google Apps Script</span>
+                    <span class="skill-tag">Automation</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Google Sheets Automation</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                <h3 class="skill-title">AI Integration</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Gemini</span>
+                    <span class="skill-tag">Claude</span>
+                    <span class="skill-tag">AI Consulting</span>
+                    <span class="skill-tag">API Integration</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                <h3 class="skill-title">Google Workspace & Cloud</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Google Workspace</span>
+                    <span class="skill-tag">Google APIs</span>
+                    <span class="skill-tag">Google Sheets (Backend)</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 class="skill-title">Frontend & Visualization</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Data Visualization</span>
+                    <span class="skill-tag">Dashboards</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">Analytics Dashboard</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <h2 class="section-title">Trabajemos Juntos</h2>
+            <p class="section-subtitle">¿Tienes un flujo de trabajo manual que te cansa? Hablemos.</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 class="contact-title">Conectemos</h3>
+                <p class="contact-text">
+                    Estoy disponible para consultoría de automatización, desarrollo de scripts personalizados y soluciones integradas con IA. 
+                    Envíame un mensaje para agendar una llamada y discutir cómo puedo optimizar tus procesos.
+                </p>
+                <div class="contact-items">
+                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-details"><h4>Email</h4><a href="mailto:Cariolaflex@gmail.com">Cariolaflex@gmail.com</a></div></div>
+                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div class="contact-details"><h4>WhatsApp / Teléfono</h4><a href="https://wa.me/56992841001" target="_blank">+56 9 9284 1001</a></div></div>
+                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-details"><h4>Ubicación</h4><span>La Serena, Chile</span></div></div>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/cariola-flex-cariola-ampuero-65154939a" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/CariolaFlex" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://instagram.com/andrescariola" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group"><label class="form-label">Nombre</label><input type="text" class="form-input" required></div>
+                <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" required></div>
+                <div class="form-group"><label class="form-label">Mensaje</label><textarea class="form-textarea" required></textarea></div>
+                <button type="submit" class="form-submit"><i class="fas fa-paper-plane"></i> Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">© 2024 Andrés Cariola. Todos los derechos reservados.</div>
+            <ul class="footer-links">
+                <li><a href="#" class="footer-link">Privacidad</a></li>
+                <li><a href="#" class="footer-link">Términos</a></li>
+                <li><a href="https://wa.me/56992841001" class="footer-link">Agendar Call</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <div class="fab" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></div>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Full Screen View">
+    </div>
+
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <div id="modalContent">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        // --- JAVASCRIPT PRINCIPAL ---
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        
+        // Scroll to top
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        // Particles animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // DATA: EvoNeuro Figures
+        const evoNeuroFigures = [
+            { sec: "1. Access & Auth", title: "Web Application Gateway", desc: "Dual-routing mechanism separating 'New Patient' from 'Registered Patient' logic flows.", img: "https://i.postimg.cc/fWV1NHQx/1.png" },
+            { sec: "1. Access & Auth", title: "Registration Interface", desc: "Segmented HTML5 form: Personal Info, Contact & Residency, and Clinical Data.", img: "https://i.postimg.cc/v84CsPw3/2.png" },
+            { sec: "2. Personal Data", title: "Personal Info Module", desc: "Captures Name, Surname, and National ID (RUT) with real-time validation.", img: "https://i.postimg.cc/zDy4rdYk/3.png" },
+            { sec: "2. Personal Data", title: "Valid Input Fields", desc: "Client-side regex validation for alphanumeric patterns and tooltips.", img: "https://i.postimg.cc/L6wxVRq8/4.png" },
+            { sec: "2. Personal Data", title: "Interactive Date Picker", desc: "Smart calendar component for DOB eliminating format ambiguity.", img: "https://i.postimg.cc/rF3f9cdF/5.png" },
+            { sec: "2. Personal Data", title: "Date Navigation Logic", desc: "Year-switching functionality for rapid navigation through decades.", img: "https://i.postimg.cc/jdmMhKWC/6.png" },
+            { sec: "2. Personal Data", title: "Gender Selection", desc: "Standardized categorical dropdown mapping input to fixed backend values.", img: "https://i.postimg.cc/8P9ZbDFF/7.png" },
+            { sec: "2. Personal Data", title: "Advanced Year Selection", desc: "UI capability handling a wide range of historical dates for accurate age calc.", img: "https://i.postimg.cc/RVygT93J/8.png" },
+            { sec: "2. Personal Data", title: "Gender Options Detail", desc: "Inclusive options (Male, Female, Intersex) reflecting modern standards.", img: "https://i.postimg.cc/kgSf1Z84/9.png" },
+            { sec: "3. Geolocation", title: "Contact & Residency", desc: "Address capture. 'Commune' field disabled pending valid 'Region' selection.", img: "https://i.postimg.cc/MpBdP4RH/10.png" },
+            { sec: "3. Geolocation", title: "Region Selection", desc: "Dropdown populated with Chile's official regions triggering async filter.", img: "https://i.postimg.cc/0yScW3mM/11.png" },
+            { sec: "3. Geolocation", title: "Region Selection State", desc: "Selection dynamically enables 'Commune' field and injects data subset.", img: "https://i.postimg.cc/g2hNS5RL/12.png" },
+            { sec: "3. Geolocation", title: "Cascading Commune Filter", desc: "Dropdown populated only with communes linked to the selected region.", img: "https://i.postimg.cc/rw4QnbWt/13.png" },
+            { sec: "3. Geolocation", title: "Contact Details Input", desc: "Regex validation for Email formats and numeric phone strings.", img: "https://i.postimg.cc/7Zzmsc72/14.png" },
+            { sec: "3. Geolocation", title: "Dynamic Region Change", desc: "Changing region automatically clears and updates the commune list.", img: "https://i.postimg.cc/9Q9J8ST1/15.png" },
+            { sec: "3. Geolocation", title: "Filtered Commune List", desc: "Displays only relevant locations confirming logic execution.", img: "https://i.postimg.cc/mg98XqMy/16.png" },
+            { sec: "4. Socio-Clinical", title: "Additional Info Module", desc: "Captures socio-economic data (Occupation) and emergency contacts.", img: "https://i.postimg.cc/dVC4HXdR/17.png" },
+            { sec: "4. Socio-Clinical", title: "Request Type Segmentation", desc: "Splits flow between 'Medical Consultation' and 'Prescription Request'.", img: "https://i.postimg.cc/kgSf1Z8y/18.png" },
+            { sec: "4. Socio-Clinical", title: "Emergency Contact Data", desc: "Clean interface prioritizing essential emergency contact fields.", img: "https://i.postimg.cc/vZn3qj9P/19.png" },
+            { sec: "4. Socio-Clinical", title: "Clinical History Branching", desc: "Conditional Logic: 'Previously Treated' triggers injection of clinical fields.", img: "https://i.postimg.cc/9Q9J8ST8/20.png" },
+            { sec: "4. Socio-Clinical", title: "New Patient Logic", desc: "Simplifies form for new users, asking only for general reason.", img: "https://i.postimg.cc/t462SfPv/21.png" },
+            { sec: "4. Socio-Clinical", title: "Returning Patient Logic", desc: "Expands DOM: Pathology, Medication Name, Last Control Date, Dosage.", img: "https://i.postimg.cc/9fj1vptt/22.png" },
+            { sec: "4. Socio-Clinical", title: "Clinical Detail Input", desc: "Captures granular treatment history (e.g., ADHD, Samexid).", img: "https://i.postimg.cc/25fTPwF7/23.png" },
+            { sec: "4. Socio-Clinical", title: "Treatment Timeline", desc: "Date pickers for 'Last Control' and 'Start Date' to assess continuity.", img: "https://i.postimg.cc/nLtT6kY2/24.png" },
+            { sec: "4. Socio-Clinical", title: "Last Consumption Selector", desc: "Gauges recency (Today, One week ago) to assess withdrawal risks.", img: "https://i.postimg.cc/LsMvrTBC/25.png" },
+            { sec: "5. Submission", title: "Completed Form Review", desc: "Full view of registration with all conditional sections expanded.", img: "https://i.postimg.cc/LsMvrTBb/26.png" },
+            { sec: "5. Submission", title: "Submission Success", desc: "Immediate confirmation modal with 'Next Steps' action buttons.", img: "https://i.postimg.cc/SNJZ8jx9/27.png" },
+            { sec: "5. Submission", title: "Next Steps Navigation", desc: "Guides user to Service Request without re-navigating the site.", img: "https://i.postimg.cc/QxH65Vd1/28.png" },
+            { sec: "5. Submission", title: "Session Termination", desc: "Polite closing message confirming end of session.", img: "https://i.postimg.cc/KvR9L48L/29.png" },
+            { sec: "5. Submission", title: "Returning User Flow", desc: "Bypasses long form, routing directly to service selection menu.", img: "https://i.postimg.cc/YqhXgjCN/30.png" },
+            { sec: "5. Submission", title: "Backend Database", desc: "Google Sheets relational DB. Auto-generates IDs (P000001) and timestamps.", img: "https://i.postimg.cc/fTJHXkRK/31.png" },
+            { sec: "5. Submission", title: "Data Persistence Detail", desc: "Consistent formatting ensuring serialization logic works correctly.", img: "https://i.postimg.cc/qMzmngvm/32.png" },
+            { sec: "5. Submission", title: "Clinical Data Storage", desc: "Securely stores sensitive clinical data accessible only to auth staff.", img: "https://i.postimg.cc/yYkf9W8j/33.png" },
+            { sec: "5. Submission", title: "Authenticated Dashboard", desc: "Recognizes session, offers 'Request Prescription' or 'Consultation'.", img: "https://i.postimg.cc/L6nyfh8C/34.png" },
+            { sec: "6. Prescription Engine", title: "Service Selection Menu", desc: "User selects 'Request Prescription' to initiate workflow.", img: "https://i.postimg.cc/SNJZ8jxv/35.png" },
+            { sec: "6. Prescription Engine", title: "Identity Verification", desc: "Server-side query checking registration via National ID (RUT).", img: "https://i.postimg.cc/5N6Pvj2G/36.png" },
+            { sec: "6. Prescription Engine", title: "Invalid ID Handling", desc: "Error state if RUT not found, prompting registration.", img: "https://i.postimg.cc/gknMRr21/37.png" },
+            { sec: "6. Prescription Engine", title: "20-Day Rule Enforcement", desc: "Blocks request if previous issued <20 days ago.", img: "https://i.postimg.cc/zXVdW3fm/38.png" },
+            { sec: "6. Prescription Engine", title: "Request Interface", desc: "Features dynamic dropdowns for 'Medication Name' and 'Dosage'.", img: "https://i.postimg.cc/RVNPfq05/39.png" },
+            { sec: "6. Prescription Engine", title: "Dynamic Med Inventory", desc: "Populated in real-time from 'Medicines' master sheet.", img: "https://i.postimg.cc/Wbh9rt4c/40.png" },
+            { sec: "6. Prescription Engine", title: "Active Compound Mapping", desc: "Selecting brand (Concerta) displays compound (Methylphenidate).", img: "https://i.postimg.cc/sDvnS12z/41.png" },
+            { sec: "6. Prescription Engine", title: "Dosage Selection Logic", desc: "Filters strengths valid only for selected medication.", img: "https://i.postimg.cc/yYtLTBDb/42.png" },
+            { sec: "6. Prescription Engine", title: "Inventory (Neurok)", desc: "User selects Neurok; Active compound updates to Lisdexamfetamine.", img: "https://i.postimg.cc/152vKP8T/43.png" },
+            { sec: "6. Prescription Engine", title: "Context Dosage (Neurok)", desc: "Dosage list updates to Neurok strengths (30mg, 50mg, 70mg).", img: "https://i.postimg.cc/c42FcZvz/44.png" },
+            { sec: "6. Prescription Engine", title: "Inventory (Ritalin)", desc: "Selection of Ritalin updates compound to Methylphenidate.", img: "https://i.postimg.cc/qMS1G0NS/45.png" },
+            { sec: "6. Prescription Engine", title: "Dosage Selection (Ritalin)", desc: "Captures precise data point (e.g., 10 mg) for engine.", img: "https://i.postimg.cc/rF3f9cDB/46.png" },
+            { sec: "6. Prescription Engine", title: "Transaction Confirmation", desc: "Generates unique Transaction ID (RS-000007) for auditing.", img: "https://i.postimg.cc/NfSdxYyq/47.png" },
+            { sec: "6. Prescription Engine", title: "Request Database", desc: "Logs request as 'Pending' linked to Patient ID.", img: "https://i.postimg.cc/hP620gJG/48.png" },
+            { sec: "6. Prescription Engine", title: "Completed Transactions", desc: "Approved requests: PDF generated, Drive Link logged, Folio assigned.", img: "https://i.postimg.cc/NfSdxYyF/49.png" }
+        ];
+
+        // --- MODAL LOGIC ---
+        function openProjectModal(projectId) {
+            const modal = document.getElementById('projectModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            if (projectId === 'evoneuro') {
+                // Construir el Dashboard de EvoNeuro con Tabs
+                let html = `
+                    <div class="dashboard-container">
+                        <div class="dashboard-header">
+                            <h2>EvoNeuro Clinic System</h2>
+                            <div class="module-selector">
+                                <button class="flow-tab active" onclick="switchFlow(1)">Flujo 1: Registro & Admisión</button>
+                                <button class="flow-tab" onclick="switchFlow(2)">Flujo 2: Gestión Clínica</button>
+                            </div>
+                        </div>
+
+                        <div id="flow1-content">
+                            
+                            <div class="stats-panel">
+                                <div class="stat-box">
+                                    <h3>Tiempo Ahorrado</h3>
+                                    <div class="number">99.2%</div>
+                                    <div class="trend"><i class="fas fa-arrow-up"></i> vs Manual</div>
+                                </div>
+                                <div class="stat-box">
+                                    <h3>Pacientes</h3>
+                                    <div class="number">600k+</div>
+                                    <div class="trend"><i class="fas fa-users"></i> Activos</div>
+                                </div>
+                                <div class="stat-box">
+                                    <h3>Recetas/Mes</h3>
+                                    <div class="number">15k</div>
+                                    <div class="trend"><i class="fas fa-file-medical"></i> Procesadas</div>
+                                </div>
+                                <div class="stat-box">
+                                    <h3>Uptime</h3>
+                                    <div class="number">99.9%</div>
+                                    <div class="trend"><i class="fas fa-server"></i> AWS Cloud</div>
+                                </div>
+                            </div>
+
+                            <div class="charts-area">
+                                <div class="chart-card">
+                                    <h3>Análisis de Eficiencia: Manual vs IA</h3>
+                                    <canvas id="efficiencyChart"></canvas>
+                                </div>
+                                <div class="chart-card">
+                                    <h3>Distribución de Carga</h3>
+                                    <canvas id="loadChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-header" style="margin-top:4rem; border-bottom:none; padding-bottom:0;">
+                                <h2>Arquitectura del Sistema (Flujo 1)</h2>
+                                <p style="font-size:0.9rem; opacity:0.7">Desglose visual de los 49 nodos lógicos del sistema de admisión.</p>
+                            </div>
+                            <div class="arch-grid-container">
+                `;
+
+                // Generate Grid logic for Flow 1
+                let currentSection = "";
+                evoNeuroFigures.forEach((fig, index) => {
+                    if(fig.sec !== currentSection) {
+                        currentSection = fig.sec;
+                        html += `<div class="section-divider"><div></div><span>${currentSection}</span><div></div></div>`;
+                        html += `<div class="arch-grid">`;
+                    }
+                    
+                    html += `
+                        <div class="arch-card">
+                            <div class="arch-img-container" onclick="openLightbox('${fig.img}')">
+                                <img src="${fig.img}" alt="${fig.title}" loading="lazy">
+                                <span class="fig-tag">FIG ${(index + 1).toString().padStart(2, '0')}</span>
+                            </div>
+                            <div class="arch-body">
+                                <div class="arch-title">${fig.title}</div>
+                                <div class="arch-desc">${fig.desc}</div>
+                            </div>
+                        </div>
+                    `;
+
+                    if (index === evoNeuroFigures.length - 1 || evoNeuroFigures[index+1].sec !== currentSection) {
+                        html += `</div>`; 
+                    }
+                });
+
+                html += `   </div> </div> <div id="flow2-content" style="display:none; padding:4rem 0; text-align:center;">
+                            <div style="background:var(--dark-lighter); padding:3rem; border-radius:16px; border:1px dashed var(--border); display:inline-block;">
+                                <i class="fas fa-code-branch fa-3x" style="color:var(--primary); margin-bottom:1rem;"></i>
+                                <h3 style="color:white; margin-bottom:0.5rem;">Módulo de Gestión Clínica</h3>
+                                <p style="color:var(--text-muted);">Este flujo detallará la interacción médico-paciente y la generación de recetas electrónicas.</p>
+                                <p style="color:var(--accent); margin-top:1rem; font-size:0.9rem;">Próxima Actualización</p>
+                            </div>
+                        </div>
+
+                    </div> `;
+
+                modalContent.innerHTML = html;
+                modal.classList.add('active');
+
+                // Initialize Charts after DOM update
+                setTimeout(initCharts, 100);
+
+            } else if (projectId === 'uberpro') {
+                modalContent.innerHTML = `
+                    <div style="padding:3rem; text-align:center;">
+                        <h2>UberPro - Fleet Management</h2>
+                        <p>Próximamente disponible. Este sistema está en fase de carga.</p>
+                    </div>`;
+                modal.classList.add('active');
+            }
+        }
+
+        function switchFlow(flowId) {
+            // 1. Manage Content Visibility
+            if (flowId === 1) {
+                document.getElementById('flow1-content').style.display = 'block';
+                document.getElementById('flow2-content').style.display = 'none';
+            } else {
+                document.getElementById('flow1-content').style.display = 'none';
+                document.getElementById('flow2-content').style.display = 'block';
+            }
+
+            // 2. Manage Tab Styles
+            const tabs = document.querySelectorAll('.flow-tab');
+            tabs.forEach((tab, index) => {
+                if (index + 1 === flowId) tab.classList.add('active');
+                else tab.classList.remove('active');
+            });
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.remove('active');
+        }
+
+        // Chart.js Initialization
+        function initCharts() {
+            const ctx1 = document.getElementById('efficiencyChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Tiempo Proceso Manual (min)',
+                        data: [45, 48, 42, 50, 47, 45],
+                        borderColor: '#ef4444',
+                        tension: 0.4
+                    }, {
+                        label: 'Tiempo con EvoNeuro (min)',
+                        data: [2, 1.5, 2, 1.8, 1.5, 1.2],
+                        borderColor: '#00d9ff',
+                        backgroundColor: 'rgba(0, 217, 255, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { labels: { color: '#fff' } } },
+                    scales: {
+                        y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
+                        x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }
+                    }
+                }
+            });
+
+            const ctx2 = document.getElementById('loadChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Admisión', 'Clínica', 'Farmacia'],
+                    datasets: [{
+                        data: [30, 45, 25],
+                        backgroundColor: ['#7c3aed', '#00d9ff', '#10b981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { position: 'bottom', labels: { color: '#fff' } } }
+                }
+            });
+        }
+
+        // Lightbox Logic
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('projectModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Te contactaré pronto vía Email o WhatsApp.');
+            e.target.reset();
+        });
+
+        // Observer animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.project-card, .skill-category').forEach(el => observer.observe(el));
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenu').addEventListener('click', () => {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => { document.querySelector('.loading').style.display = 'none'; }, 1000);
+        });
+        
+        // Typewriter
+        const heroTitle = document.querySelector('.hero h1');
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        let index = 0;
+        function typeWriter() {
+            if (index < text.length) {
+                heroTitle.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 30);
+            }
+        }
+        setTimeout(typeWriter, 1500);
+    </script>
+</body>
+</html>

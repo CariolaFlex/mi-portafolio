@@ -1,36 +1,274 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Portafolio de Andrés Cariola
 
-## Getting Started
+Portafolio profesional desarrollado con **Next.js 14**, **TypeScript** y **Tailwind CSS**. Este proyecto presenta soluciones de automatización e integración de IA para transformación digital.
 
-First, run the development server:
+## ✨ Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- ⚡ **Next.js 14** con App Router
+- 🎨 **Tailwind CSS** con sistema de diseño personalizado
+- 📱 **Responsive Design** - Mobile-first
+- 🎭 **Animaciones suaves** y efectos visuales
+- 📊 **Dashboard interactivo** con Chart.js
+- 🖼️ **Lightbox** para visualización de imágenes
+- 🌐 **SEO optimizado** con metadata dinámica
+- ⚙️ **TypeScript** para type safety
+- 🎯 **Componentización modular**
+
+## 📋 Estructura del Proyecto
+
+```
+portafolio/
+├── app/                      # App Router de Next.js
+│   ├── layout.tsx           # Layout principal con SEO
+│   ├── page.tsx             # Página home
+│   └── globals.css          # Estilos globales y variables
+├── components/
+│   ├── layout/              # Componentes de estructura
+│   │   ├── Header.tsx       # Navegación principal
+│   │   └── Footer.tsx       # Pie de página
+│   ├── sections/            # Secciones de la página
+│   │   ├── Hero.tsx         # Sección hero con typewriter
+│   │   ├── Projects.tsx     # Grid de proyectos
+│   │   ├── ProjectModal.tsx # Modal con dashboard
+│   │   ├── Skills.tsx       # Habilidades técnicas
+│   │   └── Contact.tsx      # Formulario de contacto
+│   └── ui/                  # Componentes reutilizables
+│       ├── Button.tsx
+│       ├── Card.tsx
+│       ├── Badge.tsx
+│       ├── Particles.tsx
+│       └── FloatingActionButton.tsx
+├── data/                    # Datos estructurados
+│   ├── personal-info.ts     # Información personal
+│   ├── projects.ts          # Proyectos del portafolio
+│   ├── evoneuro-figures.ts  # 49 figuras del proyecto EvoNeuro
+│   ├── skills.ts            # Categorías de habilidades
+│   └── contact.ts           # Información de contacto
+├── types/
+│   └── index.ts             # Definiciones de tipos TypeScript
+├── lib/
+│   └── utils.ts             # Funciones helper
+└── public/
+    ├── images/              # Imágenes del proyecto
+    ├── icons/               # Iconos personalizados
+    └── backup-html/         # Backup del HTML original
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tecnologías Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework:** Next.js 14 (App Router)
+- **Lenguaje:** TypeScript
+- **Estilos:** Tailwind CSS
+- **Gráficos:** Chart.js + react-chartjs-2
+- **Iconos:** Font Awesome 6.5.1
+- **Fuentes:** Inter (Google Fonts), JetBrains Mono
+- **Optimización de imágenes:** next/image
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Instalación
 
-## Learn More
+### Prerrequisitos
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js 18.x o superior
+- npm, yarn o pnpm
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Pasos de instalación
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clonar el repositorio:**
+```bash
+git clone <tu-repositorio>
+cd portafolio
+```
 
-## Deploy on Vercel
+2. **Instalar dependencias:**
+```bash
+npm install
+# o
+yarn install
+# o
+pnpm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Ejecutar en desarrollo:**
+```bash
+npm run dev
+# o
+yarn dev
+# o
+pnpm dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Abrir en el navegador:**
+```
+http://localhost:3000
+```
+
+## 🏗️ Build para Producción
+
+```bash
+# Generar build optimizado
+npm run build
+
+# Ejecutar build de producción
+npm run start
+
+# Verificar el build localmente
+npm run build && npm run start
+```
+
+## 🚀 Deploy a Vercel
+
+La forma más rápida de deployar este proyecto es usando [Vercel](https://vercel.com):
+
+1. **Crear cuenta en Vercel** (si no tienes una)
+
+2. **Conectar repositorio:**
+   - Ir a [vercel.com/new](https://vercel.com/new)
+   - Importar tu repositorio Git
+   - Vercel detectará automáticamente que es un proyecto Next.js
+
+3. **Configurar proyecto:**
+   - Framework Preset: **Next.js**
+   - Build Command: `npm run build` (ya configurado)
+   - Output Directory: `.next` (ya configurado)
+
+4. **Deploy:**
+   - Click en "Deploy"
+   - Vercel creará un dominio automático (ej: `tu-portafolio.vercel.app`)
+
+### Variables de entorno (opcional)
+
+Si en el futuro agregas variables de entorno, créalas en:
+```
+Vercel Dashboard → Tu Proyecto → Settings → Environment Variables
+```
+
+## 📝 Personalización
+
+### Modificar información personal
+
+Edita los archivos en `/data`:
+
+**`data/personal-info.ts`:**
+```typescript
+export const personalInfo = {
+  name: "Tu Nombre",
+  title: "Tu Título Principal",
+  // ... resto de datos
+};
+```
+
+**`data/contact.ts`:**
+```typescript
+export const contactInfo = {
+  email: "tu@email.com",
+  phone: "+56 9 XXXX XXXX",
+  // ... redes sociales
+};
+```
+
+### Agregar nuevos proyectos
+
+Edita `data/projects.ts`:
+
+```typescript
+{
+  id: "mi-proyecto",
+  title: "Mi Nuevo Proyecto",
+  description: "Descripción del proyecto",
+  tech: ["React", "Node.js"],
+  image: "https://...",
+  stats: [
+    { value: "100%", label: "Eficiencia" }
+  ]
+}
+```
+
+### Modificar colores del tema
+
+Edita las variables CSS en `app/globals.css`:
+
+```css
+:root {
+  --primary: #00d9ff;      /* Color principal */
+  --secondary: #7c3aed;    /* Color secundario */
+  --accent: #10b981;       /* Color de acento */
+  /* ... más colores */
+}
+```
+
+## 🎨 Características Destacadas
+
+### 1. Dashboard Interactivo del Proyecto EvoNeuro
+- Sistema de tabs para diferentes flujos
+- Gráficos animados con Chart.js
+- 49 figuras arquitectónicas organizadas por secciones
+- Lightbox para visualización ampliada
+
+### 2. Animaciones y Efectos
+- **Typewriter effect** en el título principal
+- **Particles animation** en el fondo
+- **Smooth scroll** entre secciones
+- **Hover effects** en cards y botones
+- **Fade-in animations** al scroll
+
+### 3. SEO y Performance
+- Meta tags optimizados
+- Open Graph para redes sociales
+- Lazy loading de imágenes
+- Optimización con next/image
+- Code splitting automático
+
+### 4. Responsive Design
+- Mobile-first approach
+- Breakpoints adaptativos
+- Menu hamburguesa en móvil
+- Grid responsive en todas las secciones
+
+## 📊 Scripts Disponibles
+
+```bash
+npm run dev          # Desarrollo en localhost:3000
+npm run build        # Build de producción
+npm run start        # Ejecutar build de producción
+npm run lint         # Linter ESLint
+```
+
+## 🐛 Troubleshooting
+
+### Error: "Module not found"
+```bash
+# Limpiar caché y reinstalar
+rm -rf .next node_modules
+npm install
+```
+
+### Build falla en Vercel
+- Verificar que todas las dependencias estén en `package.json`
+- Revisar logs de Vercel para errores específicos
+- Asegurar que no haya errores de TypeScript
+
+### Imágenes no cargan
+- Verificar URLs de imágenes externas
+- Configurar `next.config.ts` si usas dominios externos:
+```typescript
+module.exports = {
+  images: {
+    domains: ['i.postimg.cc', 'via.placeholder.com'],
+  },
+}
+```
+
+## 📄 Licencia
+
+Este proyecto es de uso personal para el portafolio de Andrés Cariola.
+
+## 📞 Contacto
+
+- **Email:** Cariolaflex@gmail.com
+- **WhatsApp:** +56 9 9284 1001
+- **LinkedIn:** [Andrés Cariola](https://www.linkedin.com/in/cariola-flex-cariola-ampuero-65154939a)
+- **GitHub:** [@CariolaFlex](https://github.com/CariolaFlex)
+
+---
+
+**Desarrollado con ❤️ usando Next.js 14 y TypeScript**

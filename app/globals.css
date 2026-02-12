@@ -1,26 +1,160 @@
 @import "tailwindcss";
 
+/* Variables del portafolio */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colores principales */
+  --primary: #00d9ff;
+  --primary-dark: #0099cc;
+  --secondary: #7c3aed;
+  --accent: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+
+  /* Fondos oscuros */
+  --dark: #0f172a;
+  --dark-lighter: #1e293b;
+  --dark-card: #1a2332;
+
+  /* Textos */
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+
+  /* Bordes */
+  --border: #334155;
+
+  /* Fuentes */
+  --font-inter: 'Inter', sans-serif;
+  --font-jetbrains: 'JetBrains Mono', monospace;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Configuración de Tailwind con nuestras variables */
+  --color-primary-*: initial;
+  --color-primary-DEFAULT: var(--primary);
+  --color-primary-dark: var(--primary-dark);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-secondary-*: initial;
+  --color-secondary-DEFAULT: var(--secondary);
+
+  --color-accent-*: initial;
+  --color-accent-DEFAULT: var(--accent);
+
+  --color-danger-*: initial;
+  --color-danger-DEFAULT: var(--danger);
+
+  --color-warning-*: initial;
+  --color-warning-DEFAULT: var(--warning);
+
+  --color-dark-*: initial;
+  --color-dark-DEFAULT: var(--dark);
+  --color-dark-lighter: var(--dark-lighter);
+  --color-dark-card: var(--dark-card);
+
+  --color-text-*: initial;
+  --color-text-DEFAULT: var(--text);
+  --color-text-muted: var(--text-muted);
+
+  --color-border-*: initial;
+  --color-border-DEFAULT: var(--border);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animaciones base */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
