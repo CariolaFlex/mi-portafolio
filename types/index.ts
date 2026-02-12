@@ -92,3 +92,51 @@ export interface PersonalInfo {
   profileImage: string;
   logo: string;
 }
+
+// ============================================
+// TIPOS PARA SISTEMA DE HERRAMIENTAS
+// ============================================
+
+export type ProjectType = 'html' | 'external';
+
+export interface Tool {
+  id: string;
+  name: string;
+  description: string;
+  type: ProjectType;
+
+  // Si type === 'html'
+  htmlPath?: string;              // ej: "/herramientas/ingenieria-civil/estructuras/calc-vigas.html"
+
+  // Si type === 'external'
+  externalUrl?: string;           // ej: "https://mi-app.vercel.app"
+
+  // Común para ambos
+  thumbnail: string;              // ruta a imagen
+  technologies: string[];         // ["HTML", "CSS", "JS"] o ["Next.js", "Firebase"]
+  featured?: boolean;             // destacar en home
+  tags?: string[];                // Tags adicionales: "Nuevo", "Destacado", etc.
+}
+
+export interface Subcategory {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;                   // Font Awesome icon
+  tools: Tool[];
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  gradient: string;               // Gradiente de color para la card
+  hasSubcategories: boolean;      // true si tiene subcategorías
+
+  // Si hasSubcategories === true
+  subcategories?: Subcategory[];
+
+  // Si hasSubcategories === false
+  tools?: Tool[];
+}

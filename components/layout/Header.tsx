@@ -69,11 +69,19 @@ export function Header() {
             </button>
           </li>
           <li>
+            <Link
+              href="/herramientas"
+              className="nav-link text-text-muted no-underline font-medium transition-all duration-300 relative hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Herramientas
+            </Link>
+          </li>
+          <li>
             <button
               onClick={() => scrollToSection('projects')}
               className="nav-link text-text-muted no-underline font-medium transition-all duration-300 relative hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
             >
-              Proyectos
+              Portafolio
             </button>
           </li>
           <li>
@@ -127,11 +135,20 @@ export function Header() {
               </button>
             </li>
             <li>
+              <Link
+                href="/herramientas"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-text-muted font-medium hover:text-primary block"
+              >
+                Herramientas
+              </Link>
+            </li>
+            <li>
               <button
                 onClick={() => scrollToSection('projects')}
                 className="text-text-muted font-medium hover:text-primary w-full text-left"
               >
-                Proyectos
+                Portafolio
               </button>
             </li>
             <li>

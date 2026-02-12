@@ -224,6 +224,146 @@ Edita las variables CSS en `app/globals.css`:
 - Menu hamburguesa en móvil
 - Grid responsive en todas las secciones
 
+### 5. Sistema de Herramientas y Proyectos
+- **Categorías dinámicas** con subcategorías opcionales
+- **Soporte dual**: Proyectos HTML (iframe) y externos (Vercel/otros)
+- **Navegación intuitiva** con breadcrumbs
+- **Thumbnails** y badges de tecnología
+- **Filtrado** por categoría y subcategoría
+- Ver sección completa "Agregar Herramientas" más abajo ⬇️
+
+## 🔧 Sistema de Herramientas (Nuevo)
+
+### Estructura de Categorías
+
+El portafolio incluye un sistema completo de herramientas organizadas en 5 categorías:
+
+1. **Ingeniería Civil** (con subcategorías)
+   - Control y Gestión de Obras
+   - Estructuras
+   - Hidráulica
+   - Geotecnia
+   - Vial
+
+2. **Hábitos y Organización** (sin subcategorías)
+3. **Infografías** (sin subcategorías)
+4. **Finanzas** (sin subcategorías)
+5. **Otros Proyectos** (sin subcategorías)
+
+### Tipos de Proyectos
+
+El sistema soporta **DOS tipos de proyectos**:
+
+#### 1. Proyectos HTML (Herramientas standalone)
+- Se muestran en un **iframe** dentro del portafolio
+- Archivos ubicados en `public/herramientas/[categoria]/[subcategoria]/`
+- Se abren en una página del portafolio con visor de iframe
+- Incluyen botón para "Abrir en nueva pestaña"
+
+#### 2. Proyectos Externos (Apps desplegadas)
+- Redirigen a **URL externa** (ej: Vercel, Netlify, etc.)
+- Se abren en **nueva pestaña**
+- Se muestran exactamente igual visualmente (misma card)
+
+### ➕ Cómo Agregar una Nueva Herramienta
+
+#### Opción A: Proyecto HTML
+
+**1. Crea tu archivo HTML:**
+
+```bash
+# Ejemplo: Calculadora de vigas
+public/herramientas/ingenieria-civil/estructuras/calc-vigas.html
+```
+
+**2. Registra en `data/herramientas.ts`:**
+
+```typescript
+// Dentro de la subcategoría correspondiente
+{
+  id: "calc-vigas",
+  name: "Calculadora de Vigas",
+  description: "Calcula momentos, cortantes y deflexiones en vigas",
+  type: "html",
+  htmlPath: "/herramientas/ingenieria-civil/estructuras/calc-vigas.html",
+  thumbnail: "/thumbnails/calc-vigas.png",
+  technologies: ["HTML", "CSS", "JavaScript"],
+  featured: true,  // Opcional: destacar en home
+  tags: ["Nuevo"]  // Opcional: badges adicionales
+}
+```
+
+**3. Agrega thumbnail (opcional):**
+
+```bash
+# Captura de pantalla 800x600px
+public/thumbnails/calc-vigas.png
+```
+
+Si no tienes thumbnail, usa: `/thumbnails/placeholder.png`
+
+#### Opción B: Proyecto Externo
+
+**Registra en `data/herramientas.ts`:**
+
+```typescript
+{
+  id: "dashboard-proyectos",
+  name: "Dashboard de Gestión",
+  description: "Sistema completo de gestión de obras con Firebase",
+  type: "external",
+  externalUrl: "https://mi-app.vercel.app",
+  thumbnail: "/thumbnails/dashboard.png",
+  technologies: ["Next.js", "Firebase", "Tailwind"],
+  featured: false
+}
+```
+
+### 📂 Ubicación de Archivos
+
+```
+public/
+├── herramientas/
+│   ├── ingenieria-civil/
+│   │   ├── control-gestion/    # Tus HTMLs aquí
+│   │   ├── estructuras/
+│   │   ├── hidraulica/
+│   │   ├── geotecnia/
+│   │   └── vial/
+│   ├── habitos-organizacion/
+│   ├── infografias/
+│   ├── finanzas/
+│   ├── otros/
+│   └── ejemplo-template.html   # Template de referencia
+└── thumbnails/
+    └── [nombre-proyecto].png
+```
+
+### 🎨 Template HTML Recomendado
+
+Ver archivo: `public/herramientas/ejemplo-template.html`
+
+Características del template:
+- Autocontenido (CSS y JS inline)
+- Responsive mobile-first
+- Diseño moderno con gradientes
+- Animaciones suaves
+
+### 🔍 Navegación del Sistema
+
+```
+/herramientas                                    → Grid de categorías
+/herramientas/ingenieria-civil                  → Subcategorías
+/herramientas/ingenieria-civil/estructuras      → Proyectos
+/herramientas/ingenieria-civil/estructuras/calc-vigas → Visor iframe
+```
+
+Para categorías sin subcategorías:
+```
+/herramientas/finanzas                          → Proyectos directos
+/herramientas/finanzas/calculadora-roi          → Visor iframe
+```
+
 ## 📊 Scripts Disponibles
 
 ```bash
