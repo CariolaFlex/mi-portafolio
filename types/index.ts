@@ -60,10 +60,17 @@ export interface Figure {
   image: string;
 }
 
+export interface Skill {
+  name: string;
+  description: string;
+  level: 'expert' | 'advanced' | 'intermediate';
+}
+
 export interface SkillCategory {
-  title: string;
+  id: string;
+  name: string;
   icon: string;
-  skills: string[];
+  skills: Skill[];
 }
 
 export interface ContactInfo {
@@ -83,14 +90,33 @@ export interface PersonalInfo {
   name: string;
   title: string;
   subtitle: string;
-  description: string;
-  availableForWork: boolean;
+  shortBio: string;
+  longBio: string;
+  location: string;
+  email: string;
+  availableForWork?: boolean;
   stats: {
-    value: string;
-    label: string;
-  }[];
-  profileImage: string;
-  logo: string;
+    experience: string;
+    field: string;
+    automation: string;
+  };
+  specialties: string[];
+  civilEngineering: string[];
+  education: {
+    degree: string;
+    institution: string;
+    period: string;
+    location: string;
+  };
+  valueProposition: string[];
+  social: {
+    github: string;
+    linkedin: string;
+    twitter?: string;
+    portfolio: string;
+  };
+  profileImage?: string;
+  logo?: string;
 }
 
 // ============================================

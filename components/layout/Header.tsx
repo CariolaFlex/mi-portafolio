@@ -48,7 +48,7 @@ export function Header() {
         }}>
           <div className="relative w-[50px] h-[50px] animate-[logoFloat_3s_ease-in-out_infinite]">
             <Image
-              src={personalInfo.logo}
+              src={personalInfo.logo || 'https://i.postimg.cc/vBVjWBhw/Logo-HD.png'}
               alt={`${personalInfo.name} Logo`}
               fill
               className="object-contain rounded-lg"
@@ -77,8 +77,16 @@ export function Header() {
             </Link>
           </li>
           <li>
+            <Link
+              href="/cariolatools"
+              className="nav-link text-text-muted no-underline font-medium transition-all duration-300 relative hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+            >
+              CariolaTools
+            </Link>
+          </li>
+          <li>
             <button
-              onClick={() => scrollToSection('projects')}
+              onClick={() => scrollToSection('proyectos')}
               className="nav-link text-text-muted no-underline font-medium transition-all duration-300 relative hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
             >
               Portafolio
@@ -86,7 +94,7 @@ export function Header() {
           </li>
           <li>
             <button
-              onClick={() => scrollToSection('skills')}
+              onClick={() => scrollToSection('habilidades')}
               className="nav-link text-text-muted no-underline font-medium transition-all duration-300 relative hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
             >
               Habilidades
@@ -94,7 +102,7 @@ export function Header() {
           </li>
           <li>
             <button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('contacto')}
               className="nav-link text-text-muted no-underline font-medium transition-all duration-300 relative hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
             >
               Contacto
@@ -144,8 +152,17 @@ export function Header() {
               </Link>
             </li>
             <li>
+              <Link
+                href="/cariolatools"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-text-muted font-medium hover:text-primary block"
+              >
+                CariolaTools
+              </Link>
+            </li>
+            <li>
               <button
-                onClick={() => scrollToSection('projects')}
+                onClick={() => scrollToSection('proyectos')}
                 className="text-text-muted font-medium hover:text-primary w-full text-left"
               >
                 Portafolio
@@ -153,7 +170,7 @@ export function Header() {
             </li>
             <li>
               <button
-                onClick={() => scrollToSection('skills')}
+                onClick={() => scrollToSection('habilidades')}
                 className="text-text-muted font-medium hover:text-primary w-full text-left"
               >
                 Habilidades
@@ -161,7 +178,7 @@ export function Header() {
             </li>
             <li>
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection('contacto')}
                 className="text-text-muted font-medium hover:text-primary w-full text-left"
               >
                 Contacto

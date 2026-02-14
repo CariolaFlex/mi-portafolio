@@ -17,7 +17,7 @@ export function Projects() {
 
   return (
     <>
-      <section id="projects" className="py-20 px-8 bg-gradient-to-b from-dark to-dark-lighter">
+      <section id="proyectos" className="py-20 px-8 bg-gradient-to-b from-dark to-dark-lighter">
         <div className="max-w-[1400px] mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16 animate-[fadeInUp_0.8s_ease]">
