@@ -24,7 +24,7 @@ export function parseExcelFile(file: File, options: ParseOptions): Promise<Parse
     reader.onload = (e) => {
       try {
         const data = e.target?.result;
-        const workbook = XLSX.read(data, { type: 'binary' });
+        const workbook = XLSX.read(data, { type: 'array', codepage: 65001 });
 
         // Tomar la primera hoja
         const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -81,7 +81,7 @@ export function parseExcelFile(file: File, options: ParseOptions): Promise<Parse
     };
 
     reader.onerror = () => reject(new Error('Error al leer el archivo'));
-    reader.readAsBinaryString(file);
+    reader.readAsArrayBuffer(file);
   });
 }
 
